@@ -1,4 +1,4 @@
-# back-end-exercicios
+# Fullstack - Pratica Guiada
 Repositorio para pratica guiada do modulo fullstack; 
 
 
