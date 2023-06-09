@@ -1,11 +1,5 @@
 import { UserDatabase } from "../database/UserDatabase"
-import { DeleteUserInputDTO, DeleteUserOutputDTO } from "../dtos/user/deleteUser.dto"
-import { GetUserOutputDTO, GetUsersInputDTO, GetUsersOutputDTO } from "../dtos/user/getUsers.dto"
-import { LoginInputDTO, LoginOutputDTO } from "../dtos/user/login.dto"
-import { SignupInputDTO, SignupOutputDTO } from "../dtos/user/signup.dto"
-import { BadRequestError } from "../errors/BadRequestError"
-import { NotFoundError } from "../errors/NotFoundError"
-import { TokenPayload, USER_ROLES, User, UserDB } from "../models/User"
+import { GetUsersInputDTO, GetUsersOutputDTO } from "../dtos/user/getUsers.dto"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
 import { TokenManager } from "../services/TokenManager"
@@ -133,6 +127,7 @@ export class UserBusiness {
     return output
   }
 
+
   public deleteUser= async(input: DeleteUserInputDTO):Promise<DeleteUserOutputDTO>=>{
     const {token,idToDelete}= input
 
@@ -196,4 +191,5 @@ export class UserBusiness {
     return output
 
   }
+
 }

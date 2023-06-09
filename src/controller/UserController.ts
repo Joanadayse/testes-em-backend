@@ -5,8 +5,6 @@ import { ZodError } from "zod"
 import { BaseError } from "../errors/BaseError"
 import { LoginSchema } from "../dtos/user/login.dto"
 import { SignupSchema } from "../dtos/user/signup.dto"
-import { UserDatabase } from "../database/UserDatabase"
-import { DeleteUserScherma } from "../dtos/user/deleteUser.dto"
 
 export class UserController {
   constructor(
@@ -83,6 +81,7 @@ export class UserController {
     }
   }
 
+
   public deleteUserById= async(req:Request, res:Response)=>{
     try{
       const input=DeleteUserScherma.parse({
@@ -137,3 +136,6 @@ export class UserController {
 
   }
   }
+
+}
+
