@@ -8,6 +8,9 @@ export interface GetUsersInputDTO {
 
 export type GetUsersOutputDTO = UserModel[]
 
+export type GetUserOutputDTO = UserModel
+
+
 export const GetUsersSchema = z.object({
   q: z.string().min(1).optional(),
   token: z.string().min(1)

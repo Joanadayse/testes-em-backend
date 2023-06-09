@@ -1,4 +1,4 @@
--- Active: 1683549244954@@127.0.0.1@3306
+
 CREATE TABLE users (
     id TEXT PRIMARY KEY UNIQUE NOT NULL,
     name TEXT NOT NULL,
@@ -18,3 +18,4 @@ VALUES
 
   -- conta ADMIN e senha = "astrodev99"
 	('u003', 'Astrodev', 'astrodev@email.com', '$2a$12$N86uqg4FewXtEUKNaS.yduFpkL/KS8r1iCq2/heVGOhasXaLWG7ga', 'ADMIN');
+
