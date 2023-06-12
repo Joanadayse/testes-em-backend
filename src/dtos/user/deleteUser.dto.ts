@@ -1,16 +1,15 @@
-
-
 import z from "zod"
 
-export interface DeleteUserInputDTO{
-    token:string,
-    idToDelete:string
-    
+export interface DeleteUserInputDTO {
+  idToDelete: string,
+  token: string
 }
-export type DeleteUserOutputDTO= undefined
 
-export const DeleteUserScherma= z.object({
-    token:z.string().min(1),
-    idToDelete:z.string().min(1)
-}).transform(data=> data as DeleteUserInputDTO)
-   
+export type DeleteUserOutputDTO = {
+  message: string
+}
+
+export const DeleteUserSchema = z.object({
+  idToDelete: z.string().min(1),
+  token: z.string().min(1)
+}).transform(data => data as DeleteUserInputDTO)
