@@ -1,7 +1,5 @@
 import { UserBusiness } from "../../src/business/UserBusiness"
-import { DeleteUserScherma } from "../../src/dtos/user/deleteUser.dto"
-import { GetUsersSchema } from "../../src/dtos/user/getUsers.dto"
-import { LoginSchema } from "../../src/dtos/user/login.dto"
+import { GetUserByIdSchema } from "../../src/dtos/user/getUserById.dto"
 import { USER_ROLES } from "../../src/models/User"
 import { HashManagerMock } from "../mocks/HashManagerMock"
 import { IdGeneratorMock } from "../mocks/IdGeneratorMock"
@@ -16,16 +14,22 @@ describe("Testando getUserById", () => {
     new HashManagerMock()
   )
 
-  test("id precisa ser válido!", async () => {
-    const input = GetUsersSchema.parse({
-      token: "token-mock-astrodev",
-      q:"id-mock-astrodev"
+  test("deve buscar user", async () => {
+    const input = GetUserByIdSchema.parse({
+      id: "id-mock-fulano",
+      token: "token-mock-fulano"
     })
 
     const output = await userBusiness.getUserById(input)
 
-    expect(output.name).toBe("Astrodev")
-    expect(output.email).toBe("astrodev@email.com")
-    // expect(output.name).toBe("Astrodev")
+    expect(output).toEqual({
+      user: {
+        id: "id-mock-fulano",
+        name: "Fulano",
+        email: "fulano@email.com",
+        createdAt: expect.any(String),
+        role: USER_ROLES.NORMAL
+      },
+    })
   })
 })

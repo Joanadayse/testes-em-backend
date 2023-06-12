@@ -1,11 +1,13 @@
+import { ZodError } from "zod"
 import { UserBusiness } from "../../src/business/UserBusiness"
 import { GetUsersSchema } from "../../src/dtos/user/getUsers.dto"
-import { LoginSchema } from "../../src/dtos/user/login.dto"
 import { USER_ROLES } from "../../src/models/User"
 import { HashManagerMock } from "../mocks/HashManagerMock"
 import { IdGeneratorMock } from "../mocks/IdGeneratorMock"
 import { TokenManagerMock } from "../mocks/TokenManagerMock"
 import { UserDatabaseMock } from "../mocks/UserDatabaseMock"
+import { DeleteUserSchema } from "../../src/dtos/user/deleteUser.dto"
+import { BadRequestError } from "../../src/errors/BadRequestError"
 
 describe("Testando getUsers", () => {
   const userBusiness = new UserBusiness(
@@ -31,4 +33,40 @@ describe("Testando getUsers", () => {
       role: USER_ROLES.ADMIN
     })
   })
+
+  test("error de string vazia",async()=>{
+    expect.assertions(1)
+
+  try{
+    const input = GetUsersSchema.parse({
+      token:""
+    })
+       await userBusiness.getUsers(input)
+  }catch(error){
+    if(error instanceof ZodError){
+      expect(error.issues[0].message).toBe("String must contain at least 1 character(s)")
+
+    }
+  }
 })
+
+  test("error de token não sendo string",async()=>{
+    expect.assertions(1)
+
+  try{
+    const input = GetUsersSchema.parse({
+      // token errado
+      token:true,
+    })
+       await userBusiness.getUsers(input)
+  }catch(error){
+    if(error instanceof ZodError){
+      expect(error.issues[0].message).toBe("Expected string, received boolean")
+
+    }
+  }
+})
+ 
+})
+
+

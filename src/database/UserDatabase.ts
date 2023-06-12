@@ -24,14 +24,11 @@ export class UserDatabase extends BaseDatabase {
 
     return usersDB
   }
-  public async findUserById(id: string): Promise<UserDB | undefined>{
-    const [userDB]: UserDB[] | undefined = await BaseDatabase
 
   public async findUserById(
     id: string
   ): Promise<UserDB | undefined> {
     const [userDB]: UserDB[] | undefined[] = await BaseDatabase
-
       .connection(UserDatabase.TABLE_USERS)
       .where({ id })
 
@@ -56,9 +53,12 @@ export class UserDatabase extends BaseDatabase {
       .insert(newUserDB)
   }
 
-
-  public async deleteUserById(id:string):Promise<void>{
-    await BaseDatabase.connection(UserDatabase.TABLE_USERS).where({id}).del();
+  public async deleteUser(
+    idToDelete: string
+  ): Promise<void> {
+    await BaseDatabase
+      .connection(UserDatabase.TABLE_USERS)
+      .delete()
+      .where({ id: idToDelete })
   }
-
 }
