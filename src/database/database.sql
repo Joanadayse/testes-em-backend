@@ -18,3 +18,16 @@ VALUES
 
   -- conta ADMIN e senha = "astrodev99"
 	('u003', 'Astrodev', 'astrodev@email.com', '$2a$12$N86uqg4FewXtEUKNaS.yduFpkL/KS8r1iCq2/heVGOhasXaLWG7ga', 'ADMIN');
+
+CREATE TABLE products (
+    id TEXT PRIMARY KEY UNIQUE NOT NULL,
+    name TEXT NOT NULL,
+    price REAL NOT NULL,
+    created_at TEXT DEFAULT (DATETIME()) NOT NULL
+);
+
+INSERT INTO products (id, name, price)
+VALUES
+	('p001', 'Mouse', 50),
+	('p002', 'Teclado', 80),
+	('p003', 'Monitor', 700);

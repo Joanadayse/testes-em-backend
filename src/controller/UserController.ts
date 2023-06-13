@@ -5,8 +5,6 @@ import { ZodError } from "zod"
 import { BaseError } from "../errors/BaseError"
 import { LoginSchema } from "../dtos/user/login.dto"
 import { SignupSchema } from "../dtos/user/signup.dto"
-import { DeleteUserSchema } from "../dtos/user/deleteUser.dto"
-import { GetUserByIdSchema } from "../dtos/user/getUserById.dto"
 
 export class UserController {
   constructor(
@@ -68,52 +66,6 @@ export class UserController {
       })
 
       const output = await this.userBusiness.login(input)
-
-      res.status(200).send(output)
-    } catch (error) {
-      console.log(error)
-
-      if (error instanceof ZodError) {
-        res.status(400).send(error.issues)
-      } else if (error instanceof BaseError) {
-        res.status(error.statusCode).send(error.message)
-      } else {
-        res.status(500).send("Erro inesperado")
-      }
-    }
-  }
-
-  public deleteUser = async (req: Request, res: Response) => {
-    try {
-      const input = DeleteUserSchema.parse({
-        idToDelete: req.params.id,
-        token: req.headers.authorization
-      })
-
-      const output = await this.userBusiness.deleteUser(input)
-
-      res.status(200).send(output)
-    } catch (error) {
-      console.log(error)
-
-      if (error instanceof ZodError) {
-        res.status(400).send(error.issues)
-      } else if (error instanceof BaseError) {
-        res.status(error.statusCode).send(error.message)
-      } else {
-        res.status(500).send("Erro inesperado")
-      }
-    }
-  }
-
-  public getUserById = async (req: Request, res: Response) => {
-    try {
-      const input = GetUserByIdSchema.parse({
-        id: req.params.id,
-        token: req.headers.authorization
-      })
-
-      const output = await this.userBusiness.getUserById(input)
 
       res.status(200).send(output)
     } catch (error) {
