@@ -6,8 +6,8 @@ Repositorio para pratica guiada do modulo fullstack;
 
     - [x]  Testes em Backend I
     - [x]  Testes em Backend II
-    - [ ]  Testes em Backend III
-    - [ ]  Testes em React I
+    - [x]  Testes em Backend III
+    - [x]  Testes em React I
     - [ ]  Testes em React II
     - [ ]  Testes em React III
     - [ ]  Deploy
