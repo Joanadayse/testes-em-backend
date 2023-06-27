@@ -1,24 +1,25 @@
-import { useState } from 'react';
-import Counter from './components/Counter';
-import Header from './components/Header';
-import TodoList from './components/TodoList';
+import { createGlobalStyle } from "styled-components";
+import ProductCard from "./components/ProductCard";
+import UserCard from "./components/UserCard";
+
+const GlobalStyle = createGlobalStyle`
+    html {
+        font-family: sans-serif;
+    }
+`
 
 function App() {
-    const [activeComponent, setActiveComponent] = useState("counter")
+  return (
+    <>
+        <GlobalStyle />
 
-    return (
-        <>
-            <Header
-                activeComponent={activeComponent}
-                setActiveComponent={setActiveComponent}
-            />
-
+        <main>
+            <ProductCard />
             <hr />
-
-            {activeComponent === "counter" && <Counter />}
-            {activeComponent === "todolist" && <TodoList />}
-        </>
-    );
+            <UserCard />
+        </main>
+    </>
+  );
 }
 
 export default App;
