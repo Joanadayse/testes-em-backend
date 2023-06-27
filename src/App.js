@@ -1,3 +1,27 @@
+
+import { createGlobalStyle } from "styled-components";
+import ProductCard from "./components/ProductCard";
+import UserCard from "./components/UserCard";
+
+const GlobalStyle = createGlobalStyle`
+    html {
+        font-family: sans-serif;
+    }
+`
+
+function App() {
+  return (
+    <>
+        <GlobalStyle />
+
+        <main>
+            <ProductCard />
+            <hr />
+            <UserCard />
+        </main>
+    </>
+  );
+
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -62,6 +86,7 @@ function App() {
             </Container>
         </AppWrapper>
     );
+
 }
 
 export default App;
